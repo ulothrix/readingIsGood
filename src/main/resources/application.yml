@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: readingisgood
+      auto-index-creation: true
+
+jwt:
+  secretKey: ${SECRET_KEY:reading-is-good}
+  accessTokenExpiration: ${ACCESS_TOKEN_EXPIRE:3600000}
