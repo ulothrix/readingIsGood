@@ -10,7 +10,7 @@ import java.util.Collection;
 
 @Getter
 @Setter
-public class UserDetailsImpl implements UserDetails {
+public class CustomerDetails implements UserDetails {
 
     private long id;
     private String email;
@@ -18,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
 
-    private UserDetailsImpl(long userId, String userEmail, String userPassword, Collection<? extends GrantedAuthority> userAuthorities) {
+    private CustomerDetails(long userId, String userEmail, String userPassword, Collection<? extends GrantedAuthority> userAuthorities) {
         this.id = userId;
         this.email = userEmail;
         this.username = userEmail;
@@ -26,8 +26,8 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = userAuthorities;
     }
 
-    public static UserDetailsImpl getUserDetails(CustomerEntity customerEntity) {
-        return new UserDetailsImpl(customerEntity.getId(), customerEntity.getEmail(), customerEntity.getPassword(), customerEntity.getRoles());
+    public static CustomerDetails getUserDetails(CustomerEntity customerEntity) {
+        return new CustomerDetails(customerEntity.getId(), customerEntity.getEmail(), customerEntity.getPassword(), customerEntity.getRoles());
     }
 
     @Override

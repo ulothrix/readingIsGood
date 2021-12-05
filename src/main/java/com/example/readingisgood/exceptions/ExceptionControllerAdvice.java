@@ -1,6 +1,5 @@
 package com.example.readingisgood.exceptions;
 
-import com.example.readingisgood.exceptions.customexceptions.UserAlreadyFoundException;
 import com.example.readingisgood.models.responses.ErrorResponse;
 import com.example.readingisgood.utils.DateUtil;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +34,8 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(dateUtil.getDateTimeFormatter().format(Instant.now()), errorMessages));
     }
 
-    @ExceptionHandler(UserAlreadyFoundException.class)
-    public ResponseEntity<ErrorResponse> userAlreadyFoundException(UserAlreadyFoundException ex) {
+    @ExceptionHandler(ReadingIsGoodBaseException.class)
+    public ResponseEntity<ErrorResponse> handleCustomExceptions(ReadingIsGoodBaseException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(dateUtil.getDateTimeFormatter().format(Instant.now()), List.of(ex.getMessage())));
     }
 

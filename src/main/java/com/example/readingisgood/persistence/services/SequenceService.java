@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.mongodb.core.query.UpdateDefinition;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +17,7 @@ public class SequenceService {
 
     private final MongoOperations mongoOperations;
 
+    @Transactional
     public Long getNextSequence(String sequenceName)
     {
         Query query = new Query(Criteria.where("collection").is(sequenceName));

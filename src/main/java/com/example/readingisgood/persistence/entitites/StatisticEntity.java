@@ -1,35 +1,42 @@
 package com.example.readingisgood.persistence.entitites;
 
-import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-@Data
 @Document(collection = "statistics")
+@EnableMongoAuditing
 public class StatisticEntity {
 
     @Transient
-    private static final String STATISTIC_SEQUENCE = "statistic_sequence";
+    public static final String STATISTIC_SEQUENCE = "statistic_sequence";
 
     @Id
-    private long id;
+    @Getter
+    @Setter
+    private Long id;
 
+    @Getter
+    @Setter
+    private String email;
+
+    @Getter
+    @Setter
     private String month;
 
-    private Integer totalOrderCount;
+    @Getter
+    @Setter
+    private Integer totalOrderCount = 0;
 
-    private Integer totalBookCount;
+    @Getter
+    @Setter
+    private Integer totalBookCount = 0;
 
-    private Double totalPurchasedAmount;
-
-    @CreatedDate
-    private Date createdDate;
-
-    @LastModifiedDate
-    private Date lastModifiedDate;
+    @Getter
+    @Setter
+    private Double totalPurchasedAmount = 0.0;
 }

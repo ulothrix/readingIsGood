@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 public class SecurityConstants {
     public static final String DEFAULT_ROLE = "ROLE_CUSTOMER";
     public static final String BEARER = "Bearer";
-    public static final String INVALID_SIGNATURE = "Invalid JWT signature: {}";
-    public static final String INVALID_TOKEN = "Invalid JWT token: {}";
-    public static final String TOKEN_EXPIRED = "Invalid JWT token: {}";
-    public static final String TOKEN_UNSUPPORTED = "JWT token is unsupported: {}";
-    public static final String EMPTY_CLAIMS = "JWT claims string is empty: {}";
+    public static final String INVALID_SIGNATURE_LOG = "Invalid JWT signature: {}";
+    public static final String INVALID_TOKEN_LOG = "Invalid JWT token: {}";
+    public static final String TOKEN_EXPIRED_LOG = "Invalid JWT token: {}";
+    public static final String TOKEN_UNSUPPORTED_LOG = "JWT token is unsupported: {}";
+    public static final String EMPTY_CLAIMS_LOG = "JWT claims string is empty: {}";
 }

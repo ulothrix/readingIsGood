@@ -1,27 +1,42 @@
 package com.example.readingisgood.persistence.entitites;
 
-import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import javax.validation.constraints.DecimalMin;
+import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
 @Document(collection = "orders")
 public class OrderEntity {
 
     @Transient
-    private static final String ORDER_SEQUENCE = "order_sequence";
+    public static final String ORDER_SEQUENCE = "order_sequence";
 
     @Id
-    private long id;
+    @Getter
+    @Setter
+    private Long id;
+
     @DBRef
+    @Getter
+    @Setter
     private List<BookEntity> books;
 
-    @CreatedDate
-    private Date createdDate;
+    @Getter
+    @Setter
+    @DecimalMin("0.01")
+    private Double totalCost = 0.0;
+
+    @Getter
+    @Setter
+    private Integer purchasedBookCount = 0;
+
+    @Getter
+    @Setter
+    private LocalDateTime orderPlacedDate;
 }

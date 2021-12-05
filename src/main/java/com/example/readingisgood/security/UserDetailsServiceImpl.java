@@ -1,6 +1,6 @@
 package com.example.readingisgood.security;
 
-import com.example.readingisgood.exceptions.customexceptions.UserDetailsException;
+import com.example.readingisgood.exceptions.UserDetailsException;
 import com.example.readingisgood.persistence.entitites.CustomerEntity;
 import com.example.readingisgood.persistence.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<CustomerEntity> customer = customerRepository.findByEmail(username);
         return customer
-                .map(UserDetailsImpl::getUserDetails)
-                .orElseThrow(() -> new UserDetailsException("UserDetails Error"));
+                .map(CustomerDetails::getUserDetails)
+                .orElseThrow(UserDetailsException::new);
     }
 }
