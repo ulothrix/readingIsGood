@@ -10,6 +10,7 @@ import com.example.readingisgood.persistence.entitites.BookEntity;
 import com.example.readingisgood.persistence.repositories.BookRepository;
 import com.example.readingisgood.persistence.services.SequenceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import static com.example.readingisgood.persistence.entitites.BookEntity.BOOK_SE
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookService {
 
     private final BookRepository bookRepository;
@@ -43,6 +45,7 @@ public class BookService {
             bookEntity.setStock(bookRequest.getStock());
 
             bookRepository.save(bookEntity);
+            log.info("New book added: {}", bookEntity);
         }
 
         return new ReadingIsGoodResponse<>(new MessageResponse("Book successfuly added"));
@@ -60,6 +63,7 @@ public class BookService {
 
             BookDto bookDto = modelMapper.map(bookEntity, BookDto.class);
 
+            log.info("Stock update of ISBN {} : new stock: {}",bookEntity.getIsbn(),bookEntity.getStock());
             return new ReadingIsGoodResponse<>(bookDto);
         } else {
             throw new BookNotFound();

@@ -13,6 +13,7 @@ import com.example.readingisgood.security.UserDetailsServiceImpl;
 import com.example.readingisgood.utils.JwtUtil;
 import io.jsonwebtoken.lang.Collections;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +32,7 @@ import static com.example.readingisgood.persistence.entitites.CustomerEntity.USE
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class AuthenticationService {
     private final CustomerRepository customerRepository;
     private final SequenceService sequenceService;
@@ -53,6 +55,7 @@ public class AuthenticationService {
 
             MessageResponse messageResponse = new MessageResponse(REGISTERED);
 
+            log.info("User registered: {}",customerEntity.getEmail());
             return new ReadingIsGoodResponse<>(messageResponse);
         }
     }

@@ -3,12 +3,12 @@ package com.example.readingisgood.services;
 import com.example.readingisgood.exceptions.StatisticsNotFoundException;
 import com.example.readingisgood.models.responses.ReadingIsGoodResponse;
 import com.example.readingisgood.persistence.entitites.OrderEntity;
-import com.example.readingisgood.persistence.entitites.SequenceEntity;
 import com.example.readingisgood.persistence.entitites.StatisticEntity;
 import com.example.readingisgood.persistence.repositories.StatisticRepository;
 import com.example.readingisgood.persistence.services.SequenceService;
 import com.example.readingisgood.security.CustomerDetails;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +21,7 @@ import static com.example.readingisgood.persistence.entitites.StatisticEntity.ST
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class StatisticService {
 
     private final StatisticRepository statisticRepository;
@@ -48,7 +49,7 @@ public class StatisticService {
         StatisticEntity statisticEntity = null;
 
         if (thisMonthsStatistics.isEmpty()) {
-             statisticEntity = setNewStatisticsEntity(orderEntity,customerDetails);
+            statisticEntity = setNewStatisticsEntity(orderEntity, customerDetails);
         } else if (!usersAllStatistics.isEmpty()) {
             statisticEntity = usersAllStatistics.get(0);
             statisticEntity.setTotalBookCount(statisticEntity.getTotalBookCount() + orderEntity.getPurchasedBookCount());
@@ -58,9 +59,10 @@ public class StatisticService {
 
         assert statisticEntity != null;
         statisticRepository.save(statisticEntity);
+        log.info("Statistics for {} updated", customerDetails.getEmail());
     }
 
-    private StatisticEntity setNewStatisticsEntity(OrderEntity orderEntity, CustomerDetails customerDetails){
+    private StatisticEntity setNewStatisticsEntity(OrderEntity orderEntity, CustomerDetails customerDetails) {
         StatisticEntity statisticEntity = new StatisticEntity();
         statisticEntity.setId(sequenceService.getNextSequence(STATISTIC_SEQUENCE));
         statisticEntity.setEmail(customerDetails.getEmail());

@@ -19,6 +19,7 @@ import com.example.readingisgood.persistence.services.SequenceService;
 import com.example.readingisgood.security.CustomerDetails;
 import io.jsonwebtoken.lang.Collections;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,6 +39,7 @@ import static com.example.readingisgood.persistence.entitites.OrderEntity.ORDER_
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
 
     private final OrderRepository orderRepository;
@@ -92,6 +94,7 @@ public class OrderService {
                 .orders(new ArrayList<>())
                 .build();
 
+        log.info("Order placed: {}", orderResponse);
         return constructOrdersToDto(List.of(orderEntity), orderResponse, new ReadingIsGoodResponse<>());
     }
 

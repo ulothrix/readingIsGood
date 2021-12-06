@@ -18,7 +18,7 @@ public class BookRequest implements Serializable {
     private String name;
     private String author;
 
-    @Min(value = 0, message = "Stock must be greater or equal than 0")
+    @Min(value = 0, message = "Stock must be greater than or equal to 0")
     private int stock;
 
     @Pattern(regexp = "[0-9]+", message = "Only numbers must be sent")
