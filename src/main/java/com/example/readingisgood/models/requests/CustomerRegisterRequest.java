@@ -1,6 +1,6 @@
 package com.example.readingisgood.models.requests;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerRegisterRequest implements Serializable {
 
     @Email

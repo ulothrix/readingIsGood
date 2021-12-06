@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class CustomerDetailsService implements UserDetailsService {
     private final CustomerRepository customerRepository;
 
     @Override

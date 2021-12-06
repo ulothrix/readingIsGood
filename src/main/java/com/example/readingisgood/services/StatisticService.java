@@ -41,10 +41,7 @@ public class StatisticService {
 
         List<StatisticEntity> usersAllStatistics = statisticRepository.getStatisticEntityByEmail(customerDetails.getEmail());
 
-        List<StatisticEntity> thisMonthsStatistics = usersAllStatistics
-                .stream()
-                .filter(p -> p.getMonth().equals(LocalDateTime.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH)))
-                .collect(Collectors.toList());
+        List<StatisticEntity> thisMonthsStatistics = getEntitiesOfCurrentMonth(usersAllStatistics);
 
         StatisticEntity statisticEntity = null;
 
@@ -60,6 +57,13 @@ public class StatisticService {
         assert statisticEntity != null;
         statisticRepository.save(statisticEntity);
         log.info("Statistics for {} updated", customerDetails.getEmail());
+    }
+
+    private List<StatisticEntity> getEntitiesOfCurrentMonth(List<StatisticEntity> usersAllStatistics){
+        return usersAllStatistics
+                .stream()
+                .filter(p -> p.getMonth().equals(LocalDateTime.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH)))
+                .collect(Collectors.toList());
     }
 
     private StatisticEntity setNewStatisticsEntity(OrderEntity orderEntity, CustomerDetails customerDetails) {

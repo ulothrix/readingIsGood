@@ -2,7 +2,7 @@ package com.example.readingisgood.configuration;
 
 import com.example.readingisgood.security.JwtTokenFilter;
 import com.example.readingisgood.security.UserAuthenticationEntryPoint;
-import com.example.readingisgood.security.UserDetailsServiceImpl;
+import com.example.readingisgood.security.CustomerDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserAuthenticationEntryPoint userAuthenticationEntryPoint;
-    private final UserDetailsServiceImpl userDetailsService;
+    private final CustomerDetailsService customerDetailsService;
     private final JwtTokenFilter jwtTokenFilter;
 
     @Override
@@ -40,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
+                .userDetailsService(customerDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
 

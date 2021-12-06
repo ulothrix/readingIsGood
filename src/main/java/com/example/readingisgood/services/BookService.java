@@ -1,7 +1,7 @@
 package com.example.readingisgood.services;
 
-import com.example.readingisgood.exceptions.BookAlreadyExists;
-import com.example.readingisgood.exceptions.BookNotFound;
+import com.example.readingisgood.exceptions.BookAlreadyExistException;
+import com.example.readingisgood.exceptions.BookNotFoundException;
 import com.example.readingisgood.models.dtos.BookDto;
 import com.example.readingisgood.models.requests.BookRequest;
 import com.example.readingisgood.models.responses.MessageResponse;
@@ -34,7 +34,7 @@ public class BookService {
     public ReadingIsGoodResponse<Void> addNewBook(BookRequest bookRequest) {
 
         if (bookRepository.existsBookEntityByIsbn(bookRequest.getIsbn())) {
-            throw new BookAlreadyExists();
+            throw new BookAlreadyExistException();
         } else {
             BookEntity bookEntity = new BookEntity();
             bookEntity.setId(sequenceService.getNextSequence(BOOK_SEQUENCE));
@@ -66,7 +66,7 @@ public class BookService {
             log.info("Stock update of ISBN {} : new stock: {}",bookEntity.getIsbn(),bookEntity.getStock());
             return new ReadingIsGoodResponse<>(bookDto);
         } else {
-            throw new BookNotFound();
+            throw new BookNotFoundException();
         }
     }
 
@@ -86,7 +86,7 @@ public class BookService {
         if (optionalBookEntity.isPresent()) {
             return optionalBookEntity.get();
         } else {
-            throw new BookNotFound();
+            throw new BookNotFoundException();
         }
     }
 }

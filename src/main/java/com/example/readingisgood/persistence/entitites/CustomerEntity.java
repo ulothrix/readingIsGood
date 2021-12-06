@@ -23,7 +23,7 @@ import java.util.Set;
 public class CustomerEntity {
 
     @Transient
-    public static final String USER_SEQUENCE = "customer_sequence";
+    public static final String CUSTOMER_SEQUENCE = "customer_sequence";
 
     @Id
     @Getter
