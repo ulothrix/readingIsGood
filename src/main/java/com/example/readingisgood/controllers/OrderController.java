@@ -21,7 +21,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("new")
-    public ReadingIsGoodResponse<OrderResponse> placeNewOrder(@Valid @RequestBody OrderRequest orderRequest, @AuthenticationPrincipal final CustomerDetails customerDetails) {
+    public ReadingIsGoodResponse<OrderResponse> placeNewOrder(@RequestBody @Valid OrderRequest orderRequest, @AuthenticationPrincipal final CustomerDetails customerDetails) {
         return orderService.placeNewOrder(orderRequest, customerDetails);
     }
 
