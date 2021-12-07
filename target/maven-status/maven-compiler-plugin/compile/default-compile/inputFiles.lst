@@ -18,6 +18,7 @@
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/exceptions/ReadingIsGoodBaseException.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/exceptions/OrderNotFoundException.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/persistence/entitites/OrderEntity.java
+/Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/utils/DateUtil.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/persistence/entitites/StatisticEntity.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/exceptions/UserDetailsException.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/models/responses/TokenResponse.java
