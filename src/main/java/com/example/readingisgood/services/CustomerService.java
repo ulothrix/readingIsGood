@@ -20,9 +20,9 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final OrderService orderService;
 
-    public ReadingIsGoodResponse<OrderResponse> getOrders(CustomerDetails userDetails) {
+    public ReadingIsGoodResponse<OrderResponse> getOrders(CustomerDetails customerDetails) {
 
-        Optional<CustomerEntity> customer = customerRepository.findByEmail(userDetails.getEmail());
+        Optional<CustomerEntity> customer = customerRepository.findByEmail(customerDetails.getEmail());
 
         ReadingIsGoodResponse<OrderResponse> response = new ReadingIsGoodResponse<>();
         OrderResponse orderResponse = OrderResponse
@@ -31,7 +31,7 @@ public class CustomerService {
                 .build();
 
         if (customer.isPresent() && !Collections.isEmpty(customer.get().getOrders())) {
-            response = orderService.constructOrdersToDto(customer.get().getOrders(), orderResponse, response);
+            response = orderService.constructOrdersToDto(customer.get().getOrders(), orderResponse);
         } else {
             MessageResponse messageResponse = new MessageResponse("No order found!");
             response.setMessage(messageResponse);

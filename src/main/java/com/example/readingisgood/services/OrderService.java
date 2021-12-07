@@ -1,6 +1,6 @@
 package com.example.readingisgood.services;
 
-import com.example.readingisgood.exceptions.OrderNotFound;
+import com.example.readingisgood.exceptions.OrderNotFoundException;
 import com.example.readingisgood.exceptions.OrderNotFoundInTimeIntervalException;
 import com.example.readingisgood.exceptions.StockChangeException;
 import com.example.readingisgood.models.dtos.OrderBookDto;
@@ -33,6 +33,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static com.example.readingisgood.persistence.entitites.OrderEntity.ORDER_SEQUENCE;
@@ -95,7 +96,7 @@ public class OrderService {
                 .build();
 
         log.info("Order placed: {}", orderResponse);
-        return constructOrdersToDto(List.of(orderEntity), orderResponse, new ReadingIsGoodResponse<>());
+        return constructOrdersToDto(List.of(orderEntity), orderResponse);
     }
 
     public ReadingIsGoodResponse<OrderDto> getOrderDetail(@Min(0) Long id, UserDetails userDetails) {
@@ -103,7 +104,7 @@ public class OrderService {
 
         List<OrderEntity> orderEntity = customerEntity.getOrders()
                 .stream()
-                .filter(order -> order.getId() == id)
+                .filter(order -> Objects.equals(order.getId(), id))
                 .collect(Collectors.toList());
 
         if (!orderEntity.isEmpty()) {
@@ -113,7 +114,7 @@ public class OrderService {
                     .build();
             return new ReadingIsGoodResponse<>(orderDto);
         } else {
-            throw new OrderNotFound();
+            throw new OrderNotFoundException();
         }
     }
 
@@ -137,15 +138,16 @@ public class OrderService {
                     .orders(new ArrayList<>())
                     .build();
 
-            return constructOrdersToDto(orderEntities, orderResponse, new ReadingIsGoodResponse<>());
+            return constructOrdersToDto(orderEntities, orderResponse);
         } else {
             throw new OrderNotFoundInTimeIntervalException();
         }
 
     }
 
-    public ReadingIsGoodResponse<OrderResponse> constructOrdersToDto(List<OrderEntity> orderEntityList, OrderResponse orderResponse, ReadingIsGoodResponse<OrderResponse> response) {
+    public ReadingIsGoodResponse<OrderResponse> constructOrdersToDto(List<OrderEntity> orderEntityList, OrderResponse orderResponse) {
 
+        ReadingIsGoodResponse<OrderResponse> response = new ReadingIsGoodResponse<>();
         orderEntityList.forEach(order -> {
             Type listType = new TypeToken<List<OrderBookDto>>() {
             }.getType();
