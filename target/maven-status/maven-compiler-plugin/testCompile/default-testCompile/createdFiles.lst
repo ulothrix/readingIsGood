@@ -1,0 +1,9 @@
+com/example/readingisgood/services/OrderServiceTest.class
+com/example/readingisgood/persistence/services/SequenceServiceTest.class
+com/example/readingisgood/ReadingIsGoodApplicationTests.class
+com/example/readingisgood/services/StatisticServiceTest.class
+com/example/readingisgood/services/BookServiceTest.class
+com/example/readingisgood/services/BookServiceTest$1.class
+com/example/readingisgood/services/OrderServiceTest$1.class
+com/example/readingisgood/services/OrderServiceTest$2.class
+com/example/readingisgood/services/AuthenticationServiceTest.class

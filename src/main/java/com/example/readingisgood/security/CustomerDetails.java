@@ -1,7 +1,6 @@
 package com.example.readingisgood.security;
 
 import com.example.readingisgood.persistence.entitites.CustomerEntity;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

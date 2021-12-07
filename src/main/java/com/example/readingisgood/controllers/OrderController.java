@@ -5,12 +5,10 @@ import com.example.readingisgood.models.requests.OrderRequest;
 import com.example.readingisgood.models.requests.OrdersTimeIntervalRequest;
 import com.example.readingisgood.models.responses.OrderResponse;
 import com.example.readingisgood.models.responses.ReadingIsGoodResponse;
-import com.example.readingisgood.persistence.entitites.OrderEntity;
 import com.example.readingisgood.security.CustomerDetails;
 import com.example.readingisgood.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,7 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("list")
-    public ReadingIsGoodResponse<OrderResponse> getOrderByTimeInterval(@AuthenticationPrincipal final CustomerDetails customerDetails, @RequestBody OrdersTimeIntervalRequest ordersTimeIntervalRequest){
-        return orderService.getOrdersByTimeInterval(customerDetails,ordersTimeIntervalRequest);
+    public ReadingIsGoodResponse<OrderResponse> getOrderByTimeInterval(@AuthenticationPrincipal final CustomerDetails customerDetails, @RequestBody OrdersTimeIntervalRequest ordersTimeIntervalRequest) {
+        return orderService.getOrdersByTimeInterval(customerDetails, ordersTimeIntervalRequest);
     }
 }

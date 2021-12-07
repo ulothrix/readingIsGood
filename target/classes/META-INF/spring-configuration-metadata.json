@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "jwt",
+      "type": "com.example.readingisgood.configuration.properties.JwtProperties",
+      "sourceType": "com.example.readingisgood.configuration.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.access-token-expiration",
+      "type": "java.lang.Long",
+      "sourceType": "com.example.readingisgood.configuration.properties.JwtProperties"
+    },
+    {
+      "name": "jwt.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.example.readingisgood.configuration.properties.JwtProperties"
+    }
+  ],
+  "hints": []
+}
