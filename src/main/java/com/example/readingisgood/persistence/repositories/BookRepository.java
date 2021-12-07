@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface BookRepository extends MongoRepository<BookEntity, Long> {
     boolean existsBookEntityByIsbn(String isbn);
+
     Optional<BookEntity> findBookEntityByIsbn(String isbn);
 
 }

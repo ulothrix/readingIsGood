@@ -26,7 +26,6 @@ public class CustomerDetails implements UserDetails {
         this.authorities = userAuthorities;
     }
 
-    // todo: builder kullanabilir miyiz ?
     public static CustomerDetails getUserDetails(CustomerEntity customerEntity) {
         return new CustomerDetails(customerEntity.getId(), customerEntity.getEmail(), customerEntity.getPassword(), customerEntity.getRoles());
     }

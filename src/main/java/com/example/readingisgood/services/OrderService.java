@@ -29,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.constraints.Min;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,6 @@ public class OrderService {
     private final ModelMapper modelMapper;
     private final StatisticService statisticService;
 
-    //todo: dto ya çevirelim.
     @Transactional
     public ReadingIsGoodResponse<OrderResponse> placeNewOrder(OrderRequest orderRequest, CustomerDetails customerDetails) {
 
@@ -77,8 +75,7 @@ public class OrderService {
         });
 
         orderEntity.setBooks(bookList);
-        // todo: aşağıda ki date i hatalı girerek istek atalım. Eklememesi gereken entryi de mi ekliyor ?
-        LocalDateTime localDateTime = LocalDateTime.now().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        LocalDateTime localDateTime = LocalDateTime.now();
         orderEntity.setOrderPlacedDate(localDateTime);
         orderRepository.save(orderEntity);
 
@@ -120,7 +117,6 @@ public class OrderService {
     public ReadingIsGoodResponse<OrderResponse> getOrdersByTimeInterval(UserDetails userDetails, OrdersTimeIntervalRequest ordersTimeIntervalRequest) {
         CustomerEntity customerEntity = customerRepository.findCustomerEntityByEmail(userDetails.getUsername());
 
-        // todo: buradaki date işlemleri düzenlenmeli.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime startDate = LocalDateTime.parse(ordersTimeIntervalRequest.getStartDate(), formatter);
         LocalDateTime endDate = LocalDateTime.parse(ordersTimeIntervalRequest.getEndDate(), formatter);
@@ -154,6 +150,9 @@ public class OrderService {
             OrderDto orderDto = OrderDto.builder()
                     .id(order.getId())
                     .bookList(bookDtoList)
+                    .totalCost(order.getTotalCost())
+                    .orderPlacedDate(order.getOrderPlacedDate())
+                    .purchasedBookCount(order.getPurchasedBookCount())
                     .build();
             orderResponse.getOrders().add(orderDto);
         });

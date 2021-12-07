@@ -10,7 +10,6 @@ com/example/readingisgood/models/responses/TokenResponse.class
 com/example/readingisgood/models/dtos/OrderDto$OrderDtoBuilder.class
 com/example/readingisgood/security/JwtTokenFilter.class
 com/example/readingisgood/security/CustomerDetailsService.class
-com/example/readingisgood/utils/DateUtil.class
 com/example/readingisgood/services/OrderService$1.class
 com/example/readingisgood/exceptions/BookAlreadyExistException.class
 com/example/readingisgood/controllers/StatisticsController.class

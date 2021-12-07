@@ -1,8 +1,8 @@
 package com.example.readingisgood.configuration;
 
+import com.example.readingisgood.security.CustomerDetailsService;
 import com.example.readingisgood.security.JwtTokenFilter;
 import com.example.readingisgood.security.UserAuthenticationEntryPoint;
-import com.example.readingisgood.security.CustomerDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

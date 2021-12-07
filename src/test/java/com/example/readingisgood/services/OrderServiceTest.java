@@ -1,7 +1,6 @@
 package com.example.readingisgood.services;
 
 import com.example.readingisgood.exceptions.OrderNotFoundException;
-import com.example.readingisgood.models.dtos.BookDto;
 import com.example.readingisgood.models.dtos.OrderBookDto;
 import com.example.readingisgood.models.dtos.OrderDto;
 import com.example.readingisgood.models.requests.OrdersTimeIntervalRequest;
@@ -38,17 +37,9 @@ import static org.mockito.BDDMockito.given;
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
     @Mock
-    private OrderRepository orderRepository;
-    @Mock
     private CustomerRepository customerRepository;
     @Mock
-    private BookService bookService;
-    @Mock
-    private SequenceService sequenceService;
-    @Mock
     private ModelMapper modelMapper;
-    @Mock
-    private StatisticService statisticService;
     @InjectMocks
     private OrderService orderService;
 
@@ -173,7 +164,7 @@ class OrderServiceTest {
         given(customerRepository.findCustomerEntityByEmail(customerDetails.getUsername())).willReturn(customerEntity);
         given(modelMapper.map(orderEntity.getBooks(), listType)).willReturn(List.of(orderBookDto));
         // when
-        ReadingIsGoodResponse<OrderResponse> response = orderService.getOrdersByTimeInterval(customerDetails,ordersTimeIntervalRequest);
+        ReadingIsGoodResponse<OrderResponse> response = orderService.getOrdersByTimeInterval(customerDetails, ordersTimeIntervalRequest);
 
         // then
         assertThat(response.getData().getOrders()).hasSize(1);

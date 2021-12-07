@@ -18,10 +18,9 @@ public class SequenceService {
     private final MongoOperations mongoOperations;
 
     @Transactional
-    public Long getNextSequence(String sequenceName)
-    {
+    public Long getNextSequence(String sequenceName) {
         Query query = new Query(Criteria.where("collection").is(sequenceName));
-        UpdateDefinition update = new Update().inc("sequenceNumber",1);
+        UpdateDefinition update = new Update().inc("sequenceNumber", 1);
 
         SequenceEntity counter = mongoOperations.findAndModify(
                 query,

@@ -34,8 +34,7 @@ public class CustomerController {
     }
 
     @GetMapping("orders")
-    public ReadingIsGoodResponse<OrderResponse> getOrders(@AuthenticationPrincipal final CustomerDetails customerDetails)
-    {
+    public ReadingIsGoodResponse<OrderResponse> getOrders(@AuthenticationPrincipal final CustomerDetails customerDetails) {
         return customerService.getOrders(customerDetails);
     }
 }

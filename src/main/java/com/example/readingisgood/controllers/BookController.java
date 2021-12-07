@@ -18,17 +18,17 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping("new")
-    public ReadingIsGoodResponse<Void> newBook(@Valid @RequestBody BookRequest bookRequest){
+    public ReadingIsGoodResponse<Void> newBook(@Valid @RequestBody BookRequest bookRequest) {
         return bookService.addNewBook(bookRequest);
     }
 
     @PostMapping("updateStock")
-    public ReadingIsGoodResponse<BookDto> updateStock(@Valid @RequestBody BookRequest bookRequest){
+    public ReadingIsGoodResponse<BookDto> updateStock(@Valid @RequestBody BookRequest bookRequest) {
         return bookService.updateStock(bookRequest);
     }
 
     @GetMapping("all")
-    public ReadingIsGoodResponse<List<BookDto>> getAllBooks(){
+    public ReadingIsGoodResponse<List<BookDto>> getAllBooks() {
         return bookService.getAllBooks();
     }
 }

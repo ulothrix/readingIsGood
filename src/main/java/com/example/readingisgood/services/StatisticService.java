@@ -59,7 +59,7 @@ public class StatisticService {
         log.info("Statistics for {} updated", customerDetails.getEmail());
     }
 
-    private List<StatisticEntity> getEntitiesOfCurrentMonth(List<StatisticEntity> usersAllStatistics){
+    private List<StatisticEntity> getEntitiesOfCurrentMonth(List<StatisticEntity> usersAllStatistics) {
         return usersAllStatistics
                 .stream()
                 .filter(p -> p.getMonth().equals(LocalDateTime.now().getMonth().getDisplayName(TextStyle.SHORT, Locale.ENGLISH)))

@@ -1,7 +1,10 @@
 package com.example.readingisgood.models.responses;
 
 import com.example.readingisgood.models.dtos.OrderDto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 

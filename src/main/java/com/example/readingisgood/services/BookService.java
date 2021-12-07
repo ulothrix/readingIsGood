@@ -63,7 +63,7 @@ public class BookService {
 
             BookDto bookDto = modelMapper.map(bookEntity, BookDto.class);
 
-            log.info("Stock update of ISBN {} : new stock: {}",bookEntity.getIsbn(),bookEntity.getStock());
+            log.info("Stock update of ISBN {} : new stock: {}", bookEntity.getIsbn(), bookEntity.getStock());
             return new ReadingIsGoodResponse<>(bookDto);
         } else {
             throw new BookNotFoundException();
