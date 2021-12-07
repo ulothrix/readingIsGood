@@ -34,6 +34,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.readingisgood.persistence.entitites.OrderEntity.ORDER_SEQUENCE;
@@ -95,22 +96,20 @@ public class OrderService {
                 .orders(new ArrayList<>())
                 .build();
 
-        log.info("Order placed: {}", orderResponse);
         return constructOrdersToDto(List.of(orderEntity), orderResponse);
     }
 
     public ReadingIsGoodResponse<OrderDto> getOrderDetail(@Min(0) Long id, UserDetails userDetails) {
         CustomerEntity customerEntity = customerRepository.findCustomerEntityByEmail(userDetails.getUsername());
 
-        List<OrderEntity> orderEntity = customerEntity.getOrders()
-                .stream()
-                .filter(order -> Objects.equals(order.getId(), id))
-                .collect(Collectors.toList());
+        List<OrderEntity> orderEntityList = Optional.ofNullable(customerEntity.getOrders()).orElseThrow(OrderNotFoundException::new);
+        List<OrderEntity> orderEntities = orderEntityList.stream()
+                .filter(order -> Objects.equals(order.getId(), id)).collect(Collectors.toList());
 
-        if (!orderEntity.isEmpty()) {
+        if (!orderEntities.isEmpty()) {
             OrderDto orderDto = OrderDto.builder()
-                    .id(orderEntity.get(0).getId())
-                    .bookList(convertType(orderEntity.get(0).getBooks()))
+                    .id(orderEntities.get(0).getId())
+                    .bookList(convertType(orderEntities.get(0).getBooks()))
                     .build();
             return new ReadingIsGoodResponse<>(orderDto);
         } else {
@@ -159,6 +158,7 @@ public class OrderService {
             orderResponse.getOrders().add(orderDto);
         });
         response.setData(orderResponse);
+        log.info("Order placed: {}", orderResponse);
         return response;
     }
 

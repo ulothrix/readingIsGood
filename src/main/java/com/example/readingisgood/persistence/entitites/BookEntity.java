@@ -2,6 +2,7 @@ package com.example.readingisgood.persistence.entitites;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.Version;
@@ -13,6 +14,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 
 @Document(collection = "books")
+@ToString
 public class BookEntity {
 
     @Transient
