@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"y@y\",\n    \"password\":\"123456\"\n}",
+							"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\":\"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -55,7 +55,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"y@y\",\n    \"password\":\"123456\"\n}",
+							"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\":\"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -217,7 +217,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"isbn\":\"1234567891234\",\n    \"stock\": 30\n}",
+							"raw": "{\n    \"isbn\":\"3333333333333\",\n    \"stock\": 12002\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -260,7 +260,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"bookList\":[\n        {\n            \"isbn\":\"2222222222222\",\n            \"stock\":5\n        }\n    ]\n}",
+							"raw": "{\n    \"bookList\":[\n        {\n            \"isbn\":\"3333333333333\",\n            \"stock\":20\n        }\n    ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -351,7 +351,7 @@
 							"variable": [
 								{
 									"key": "orderId",
-									"value": "-1"
+									"value": "2"
 								}
 							]
 						}
