@@ -16,4 +16,5 @@ public class OrderBookDto {
     private String author;
     @JsonProperty("ISBN")
     private String isbn;
+    private double price;
 }
