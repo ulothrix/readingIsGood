@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${MONGO_DB:reading-is-good-mongodb}:27017
+      uri: mongodb://${MONGO_DB:mongodb}:27017 # ,${MONGO_DB:mongodb}:27018,${MONGO_DB:mongodb}:27019
       database: readingisgood
       auto-index-creation: true
 

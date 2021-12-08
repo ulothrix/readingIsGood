@@ -30,6 +30,7 @@
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/exceptions/BookNotFoundException.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/controllers/CustomerController.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/models/responses/MessageResponse.java
+/Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/configuration/MongoDBConfiguration.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/models/responses/OrderResponse.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/configuration/SecurityConfiguration.java
 /Users/serhatakdeniz/Projects/gdemo/reading-is-good/src/main/java/com/example/readingisgood/services/CustomerService.java

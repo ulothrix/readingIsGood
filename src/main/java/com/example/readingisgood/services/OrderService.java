@@ -121,7 +121,8 @@ public class OrderService {
         LocalDateTime startDate = LocalDateTime.parse(ordersTimeIntervalRequest.getStartDate(), formatter);
         LocalDateTime endDate = LocalDateTime.parse(ordersTimeIntervalRequest.getEndDate(), formatter);
 
-        List<OrderEntity> orderEntities = customerEntity.getOrders()
+        List<OrderEntity> orderEntityList = Optional.ofNullable(customerEntity.getOrders()).orElseThrow(OrderNotFoundException::new);
+        List<OrderEntity> orderEntities = orderEntityList
                 .stream()
                 .filter(d -> d.getOrderPlacedDate().isAfter(startDate) && d.getOrderPlacedDate().isBefore(endDate))
                 .collect(Collectors.toList());

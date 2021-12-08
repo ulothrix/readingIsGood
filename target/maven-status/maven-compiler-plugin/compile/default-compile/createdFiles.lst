@@ -66,3 +66,4 @@ com/example/readingisgood/persistence/repositories/StatisticRepository.class
 com/example/readingisgood/persistence/services/SequenceService.class
 com/example/readingisgood/configuration/properties/JwtProperties.class
 com/example/readingisgood/security/CustomerDetails.class
+com/example/readingisgood/configuration/MongoDBConfiguration.class
