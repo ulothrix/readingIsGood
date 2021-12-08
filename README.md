@@ -11,7 +11,7 @@ Please run given command in /mongodb folder;
 We do have Dockerfile so,
 * ``docker build -t reading-is-good-app:riga .``
 
-Link with Mongodb container and run Reading Is Good application container
+Link with Mongodb container and run reading-is-good-app container
 * ``docker run -p 8080:8080 --name riga-container --network=mongodb-replicaset_default --link mongodb:davybello/mongo-replica-set -d reading-is-good-app:riga``
 
 ### Postman Collection
